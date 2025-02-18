@@ -178,16 +178,16 @@ class ImageBasedTranslator:
         total_pages = min(10, len(self.doc)) if test_mode else len(self.doc)
         batch_size = 5  # Reduced batch size to minimize RECITATION errors
         error_occurred = False
-        progress_file = f'translation_progress_{int(time.time())}.pkl'
+        # progress_file = f'translation_progress_{int(time.time())}.pkl'
         
         # Load progress if exists
-        if os.path.exists(progress_file):
-            try:
-                with open(progress_file, 'rb') as f:
-                    pages_content = pickle.load(f)
-                logger.info(f"Resuming from page {len(pages_content)}")
-            except Exception as e:
-                logger.error(f"Error loading progress: {str(e)}")
+        # if os.path.exists(progress_file):
+        #     try:
+        #         with open(progress_file, 'rb') as f:
+        #             pages_content = pickle.load(f)
+        #         logger.info(f"Resuming from page {len(pages_content)}")
+        #     except Exception as e:
+        #         logger.error(f"Error loading progress: {str(e)}")
         
         def process_page_batch(page_nums: List[int]) -> List[PageContent]:
             try:
@@ -221,8 +221,8 @@ class ImageBasedTranslator:
                     results.append(result)
                 
                 # Save progress after batch
-                with open(progress_file, 'wb') as f:
-                    pickle.dump(pages_content + results, f)
+                # with open(progress_file, 'wb') as f:
+                #     pickle.dump(pages_content + results, f)
                 
                 return results
                 
@@ -264,9 +264,9 @@ class ImageBasedTranslator:
         # Sort results by page number
         pages_content.sort(key=lambda x: x.page_number)
         
-        # Clean up progress file
-        if os.path.exists(progress_file):
-            os.remove(progress_file)
+        # # Clean up progress file
+        # if os.path.exists(progress_file):
+        #     os.remove(progress_file)
             
         return pages_content
     
