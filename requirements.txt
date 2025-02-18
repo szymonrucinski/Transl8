@@ -1,0 +1,6 @@
+PyMuPDF
+google-generativeai
+Pillow
+tqdm
+python-dotenv
+tenacity
