@@ -24,6 +24,9 @@ RUN mkdir -p /app/input
 # Create volume mount points
 VOLUME ["/app/input", "/app/output"]
 
+# Copy Secret
+COPY .env /app/.env
+
 # Set environment variables if needed
 ENV PYTHONUNBUFFERED=1
 
